@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Uncaught Error: sillydrycoder is alive</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐛</text></svg>"
+    />
+    <style>
+      :root {
+        --bg: #1e1e1e;
+        --panel: #252526;
+        --line: #3c3c3c;
+        --muted: #6a6a6a;
+        --text: #cccccc;
+        --red: #f48771;
+        --blue: #569cd6;
+        --teal: #4ec9b0;
+        --orange: #ce9178;
+        --yellow: #dcdcaa;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family:
+          "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.7;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* fake devtools tab strip */
+      .tabs {
+        display: flex;
+        gap: 1.25rem;
+        padding: 0.5rem 1.25rem;
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+        font-size: 12px;
+        color: var(--muted);
+        user-select: none;
+      }
+      .tabs span {
+        cursor: default;
+      }
+      .tabs .active {
+        color: var(--text);
+        border-bottom: 1px solid var(--blue);
+        padding-bottom: 6px;
+        margin-bottom: -7px;
+        position: relative;
+        padding-right: 18px;
+      }
+      .tabs .badge {
+        position: absolute;
+        top: -2px;
+        right: 0;
+        min-width: 14px;
+        height: 14px;
+        padding: 0 4px;
+        border-radius: 7px;
+        background: var(--red);
+        color: #1e1e1e;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 14px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      /* console area */
+      main {
+        flex: 1;
+        padding: 1.25rem;
+        max-width: 880px;
+        width: 100%;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 11px;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.02em;
+      }
+
+      .error {
+        color: var(--red);
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+        word-break: break-word;
+      }
+      .arrow {
+        color: var(--muted);
+        cursor: pointer;
+        user-select: none;
+        display: inline-block;
+        width: 14px;
+        transition: transform 0.15s ease;
+      }
+
+      .stack {
+        padding-left: 1.5rem;
+      }
+      .frame {
+        color: var(--muted);
+        text-decoration: none;
+        display: block;
+        padding: 1px 0;
+        transition:
+          color 0.15s ease,
+          transform 0.15s ease;
+        word-break: break-all;
+      }
+      .frame:hover {
+        color: var(--text);
+        transform: translateX(2px);
+      }
+      .frame:hover .fn {
+        color: var(--teal);
+      }
+      .frame:hover .url {
+        text-decoration: underline;
+      }
+      .frame .at {
+        color: var(--muted);
+      }
+      .frame .fn {
+        color: var(--yellow);
+        transition: color 0.15s ease;
+      }
+      .frame .url {
+        color: var(--orange);
+      }
+      .frame.dim {
+        pointer-events: none;
+      }
+      .frame.dim .fn {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .prompt {
+        margin-top: 1.5rem;
+        padding-top: 0.75rem;
+        border-top: 1px dashed var(--line);
+        color: var(--text);
+      }
+      .prompt .chev {
+        color: var(--blue);
+        margin-right: 0.5rem;
+      }
+      .cursor {
+        display: inline-block;
+        width: 7px;
+        height: 15px;
+        background: var(--text);
+        vertical-align: -2px;
+        animation: blink 1.05s steps(2, start) infinite;
+      }
+      @keyframes blink {
+        to {
+          visibility: hidden;
+        }
+      }
+
+      footer {
+        padding: 0.75rem 1.25rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 11px;
+        display: flex;
+        justify-content: space-between;
+        background: var(--panel);
+      }
+
+      @media (max-width: 520px) {
+        body {
+          font-size: 13px;
+        }
+        .tabs {
+          gap: 0.85rem;
+          padding: 0.5rem 0.85rem;
+        }
+        main {
+          padding: 1rem;
+        }
+        .stack {
+          padding-left: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="tabs" aria-hidden="true">
+      <span>Elements</span>
+      <span class="active">Console<span class="badge">1</span></span>
+      <span>Sources</span>
+      <span>Network</span>
+      <span>Performance</span>
+      <span>Memory</span>
+    </nav>
+
+    <main>
+      <div class="meta">
+        VM404:1 &nbsp;•&nbsp; runtime: human.js &nbsp;•&nbsp; severity:
+        existential
+      </div>
+
+      <div class="error">
+        <span class="arrow">▼</span> Uncaught Error:
+        <strong>sillydrycoder</strong> is alive — and probably refactoring
+        something.
+      </div>
+
+      <div class="stack">
+        <a
+          class="frame"
+          href="https://github.com/sillydrycoder"
+          target="_blank"
+          rel="noopener"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">GitHub</span> (<span class="url"
+            >github.com/sillydrycoder</span
+          >:1:1)
+        </a>
+        <a
+          class="frame"
+          href="https://linkedin.com/in/sillydrycoder"
+          target="_blank"
+          rel="noopener"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">LinkedIn</span> (<span class="url"
+            >linkedin.com/in/sillydrycoder</span
+          >:1:1)
+        </a>
+        <a class="frame" href="mailto:hello@sillydrycoder.dev">
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">sendEmail</span> (<span class="url"
+            >hello@sillydrycoder.dev</span
+          >:1:1)
+        </a>
+        <a
+          class="frame"
+          href="https://x.com/sillydrycoder"
+          target="_blank"
+          rel="noopener"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">X</span> (<span class="url">x.com/sillydrycoder</span
+          >:1:1)
+        </a>
+        <a
+          class="frame"
+          href="https://dev.to/sillydrycoder"
+          target="_blank"
+          rel="noopener"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">writeBlog</span> (<span class="url"
+            >dev.to/sillydrycoder</span
+          >:1:1)
+        </a>
+        <a
+          class="frame"
+          href="https://instagram.com/sillydrycoder"
+          target="_blank"
+          rel="noopener"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">Instagram</span> (<span class="url"
+            >instagram.com/sillydrycoder</span
+          >:1:1)
+        </a>
+        <a
+          class="frame"
+          href="https://facebook.com/sillydrycoder"
+          target="_blank"
+          rel="noopener"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">Facebook</span> (<span class="url"
+            >facebook.com/sillydrycoder</span
+          >:1:1)
+        </a>
+        <div class="frame dim">
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">Earth</span> (universe.js:42:69)
+        </div>
+        <div class="frame dim">
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="at">at</span>
+          <span class="fn">&lt;anonymous&gt;</span>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <span class="chev">&gt;</span><span class="cursor"></span>
+      </div>
+    </main>
+
+    <footer>
+      <span>console &nbsp;|&nbsp; default levels ▾ &nbsp;|&nbsp; 1 issue</span>
+      <span>© sillydrycoder — caught at runtime.</span>
+    </footer>
+  </body>
+</html>
